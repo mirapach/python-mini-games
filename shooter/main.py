@@ -68,85 +68,72 @@ for event in pygame.event.get():
 
   if started and not paused:
       keys = pygame.key.get_pressed()  
-if keys[pygame.K_LEFT]:
+    
+  if keys[pygame.K_LEFT]:
     player_x -= 5
-if keys[pygame.K_RIGHT]:
+    
+  if keys[pygame.K_RIGHT]:
     player_x += 5
-if keys[pygame.K_UP]:
+    
+  if keys[pygame.K_UP]:
     player_y -= 5
-if keys[pygame.K_DOWN]:
+    
+  if keys[pygame.K_DOWN]:
     player_y += 5
 
-if player_x > width - 40:
+  if player_x > width - 40:
     player_x = width - 40
-elif player_x < 0:
+  
+  elif player_x < 0:
     player_x = 0
 
-
-if player_y > height - 40:
+  if player_y > height - 40:
     player_y = height - 40
-elif player_y < 0:
-    player_y = 0
-
-
-timer += 1
-if timer % 60 == 0:
-    speed += 0.03
-    while len(enemies) < 2:
-        img = enemy1 if random.randint(0,1)==0 else enemy2
-        enemies.append([random.randint(0,width-40),0,img])
-
-    player_rect = pygame.Rect(player_x,player_y,40,40)
-    screen.blit(player_img, (player_x,player_y))
-if started and not paused:
-enemy[1] += speed
-screen.blit(enemy[2],(enemy[0],enemy[1]))
-bullet[1] -= 7
-screen.blit(bullet_img, (bullet[0],bullet[1]))
-if bullet[1] < 0:
-bullets.remove(bullet)
-109
-110
-111
-12
-for enemy in enemies[:]:
-if started and not paused:
-enemy[1] += speed
-screen.blit(enemy[2],(enemy[0],enemy[1]))
-114
-115
-116
-117 
-enemy_rect = pygame. Rect(enemy[0],enemy[1],40,40)
-if started and (enemy_rect.colliderect(player_rect) or enemy[1] > height):
-return "menu"| 
-19
-120
-121
-122
-llet in bullets[ :]:
-llet_rect = pygame.Rect(bullet[0],bullet[1],10,20)
-bullet_rect.colliderect(enemy_rect):
-bullets.remove(bullet)
-23
-24
-25
-enemies.remove(enemy)
-score += 1
-break
-127
-128
-129
-130
-(screen, score)
-rted:
-tart_msg(screen)
-132
-133
-play.update()
-(fps)
-
-
   
+  elif player_y < 0:
+    player_y = 0
+    timer += 1
+    
+  if timer % 60 == 0:
+     speed += 0.03
+  
+  while len(enemies) < 2:
+      img = enemy1 if random.randint(0,1)==0 else enemy2
+      enemies.append([random.randint(0,width-40),0,img])
+      player_rect = pygame.Rect(player_x,player_y,40,40)
+      screen.blit(player_img, (player_x,player_y))
+    
+  if started and not paused:
+      enemy[1] += speed
+      screen.blit(enemy[2],(enemy[0],enemy[1]))
+      bullet[1] -= 7
+      screen.blit(bullet_img, (bullet[0],bullet[1]))
+    
+  if bullet[1] < 0:
+      bullets.remove(bullet)
 
+  for enemy in enemies[:]:
+    if started and not paused:
+        enemy[1] += speed
+        screen.blit(enemy[2],(enemy[0],enemy[1]))
+        enemy_rect = pygame. Rect(enemy[0],enemy[1],40,40)
+      
+    if started and (enemy_rect.colliderect(player_rect) or enemy[1] > height):
+        return "menu"
 
+    bullet in bullets[ :]:
+    llet_rect = pygame.Rect(bullet[0],bullet[1],10,20)
+    
+    bullet_rect.colliderect(enemy_rect):
+    bullets.remove(bullet)
+
+    enemies.remove(enemy)
+    score += 1
+    break
+
+    (screen, score)
+    rted:
+    tart_msg(screen)
+
+    play.update()
+    (fps)
